@@ -1,4 +1,12 @@
-POST https://www.tabverso.com.br/api/v1/migrations
+### VARIABLES
+# @URL=https://www.tabverso.com.br
+@URL=http://localhost:3000
 
 ###
-DELETE https://www.tabverso.com.br/api/v1/migrations
+GET {{URL}}/api/v1/status
+
+###
+POST {{URL}}/api/v1/status
+
+###
+DELETE {{URL}}/api/v1/migrations
