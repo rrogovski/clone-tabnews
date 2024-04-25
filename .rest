@@ -1,1 +1,4 @@
 POST https://www.tabverso.com.br/api/v1/migrations
+
+###
+DELETE https://www.tabverso.com.br/api/v1/migrations

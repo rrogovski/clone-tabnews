@@ -3,6 +3,10 @@ import { join } from 'node:path';
 import database from 'infra/database';
 
 export default async function migrations(req, res) {
+  if (!['GET', 'POST'].includes(req.method)) {
+    return res.status(405).end();
+  }
+
   const dbClient = await database.getNewClient();
   const defaultMigrationsOptions = {
     dbClient,
@@ -12,10 +16,6 @@ export default async function migrations(req, res) {
     verbose: true,
     migrationsTable: 'pgmigrations',
   };
-
-  if (!['GET', 'POST'].includes(req.method)) {
-    return res.status(405).end();
-  }
 
   if (req.method === 'GET') {
     const pendingMigrations = await migrationRunner(defaultMigrationsOptions);
