@@ -1,12 +1,13 @@
 ### VARIABLES
-# @URL=https://www.tabverso.com.br
-@URL=http://localhost:3000
+# @URL=https://www.tabverso.com.br/
+# @URL=http://localhost:3000/
+@URL=https://clone-tabnews-git-fix-migrations-endpoint-rrogovskis-projects.vercel.app/
 
 ###
-GET {{URL}}/api/v1/status
+GET {{URL}}api/v1/status
 
 ###
-POST {{URL}}/api/v1/status
+POST {{URL}}api/v1/status
 
 ###
-DELETE {{URL}}/api/v1/migrations
+DELETE {{URL}}api/v1/migrations
