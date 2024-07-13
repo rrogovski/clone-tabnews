@@ -8,7 +8,7 @@ const { exec } = require('node:child_process');
 const containerName = process.env.POSTGRES_CONTAINER_NAME;
 
 const messageWaiting = `🔴 Waiting for PostgreSQL(${containerName}) to be ready.`;
-const messageReady = '✅ Postgres ready!';
+const messageReady = `✅  Postgres ready!`;
 
 const startedAt = Date.now();
 function showElapsedTime() {
