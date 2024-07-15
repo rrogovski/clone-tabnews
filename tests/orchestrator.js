@@ -14,7 +14,7 @@ async function waitForAllServices() {
     });
 
     async function fetchStatusPage(bail, tryNumber) {
-      console.log(`Attempt ${tryNumber} to fetch status page`);
+      // console.log(`Attempt ${tryNumber} to fetch status page`);
       const response = await fetch(`http://localhost:3000/api/v1/status`);
       if (!response.ok) {
         throw new Error(`Status page not ready. Status: ${response.status}`);
