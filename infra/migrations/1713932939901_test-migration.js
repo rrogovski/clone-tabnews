@@ -1,4 +1,5 @@
-/* eslint-disable camelcase */
+/* eslint-disable camelcase,no-unused-vars */
+// noinspection JSUnusedLocalSymbols
 
 exports.shorthands = undefined;
 
