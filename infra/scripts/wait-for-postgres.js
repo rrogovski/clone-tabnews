@@ -28,7 +28,7 @@ function checkPostgres() {
     handleReturn,
   );
 
-  function handleReturn(error, stdout, stderr) {
+  function handleReturn(error, stdout) {
     if (stdout.includes('accepting connections')) {
       process.stdout.write(`\r ${messageWaiting} - ${showElapsedTime()}`);
       process.stdout.write(`\n ${messageReady}\n`);
