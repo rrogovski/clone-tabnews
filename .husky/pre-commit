@@ -1,0 +1,24 @@
+#!/bin/bash
+source "$(dirname "$0")/spinner.sh"
+
+function remove_docker_container {
+  start_spinner 'Removing docker gitleaks...'
+  docker rm gitleaks-clone-tabnews > /dev/null 2>&1
+  exit_code=$?
+  stop_spinner $exit_code
+}
+
+function run_docker_gitleaks {
+  start_spinner 'Running docker gitleaks...'
+  docker rm gitleaks-clone-tabnews > /dev/null 2>&1
+  docker run --name gitleaks-clone-tabnews -v `pwd`:/code zricethezav/gitleaks:latest protect --staged --source="/code" -v
+  exit_code=$?  
+  stop_spinner $exit_code
+  return $exit_code
+}
+
+
+run_docker_gitleaks &&
+remove_docker_container
+#docker run --name gitleaks-clone-tabnews -v `pwd`:/code zricethezav/gitleaks:latest protect --staged --source="/code" -v
+#docker rm gitleaks-clone-tabnews > /dev/null
