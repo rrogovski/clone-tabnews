@@ -8,6 +8,7 @@
     "dev:npm": "npm run services:up && npm run services:wait:database && npm run migrations:up && next dev",
     "stop": "npm run services:down && kill $(lsof -t -i:3000)",
     "test": "npm run services:up && concurrently -n next,jest --hide next -k -s command-jest \"next dev\" \"jest --runInBand --verbose\"",
+    "posttest": "npm run services:stop",
     "test:watch": "jest --watchAll --runInBand",
     "services:up": "docker compose --env-file .env.development --file infra/compose.yaml up -d",
     "services:stop": "docker compose --env-file .env.development -f infra/compose.yaml stop",
