@@ -4,7 +4,7 @@
   "description": "Será só mais um clone do https://www.tabnews.com.br/ do https://curso.dev/ ? Veremos...",
   "main": "index.js",
   "scripts": {
-    "dev": "./init-dev.sh",
+    "dev": "node init-dev.js",
     "dev:npm": "npm run services:up && npm run services:wait:database && npm run migrations:up && next dev",
     "stop": "npm run services:down && kill $(lsof -t -i:3000)",
     "test": "npm run services:up && concurrently -n next,jest --hide next -k -s command-jest \"next dev\" \"jest --runInBand --verbose\"",
