@@ -12,7 +12,7 @@
     "services:up": "docker compose --env-file .env.development --file infra/compose.yaml up -d",
     "services:stop": "docker compose --env-file .env.development -f infra/compose.yaml stop",
     "services:down": "docker compose --env-file .env.development -f infra/compose.yaml down",
-    "services:wait:database": "node --env-file=.env.development infra/scripts/services:wait:database.js",
+    "services:wait:database": "node --env-file=.env.development infra/scripts/wait-for-postgres.js",
     "migrations:create": "node-pg-migrate -m infra/migrations create",
     "migrations:up": "node-pg-migrate -m infra/migrations --envPath .env.development up",
     "lint:prettier:check": "prettier --check .",
