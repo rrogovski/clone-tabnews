@@ -4,12 +4,13 @@
   "description": "Será só mais um clone do https://www.tabnews.com.br/ do https://curso.dev/ ? Veremos...",
   "main": "index.js",
   "scripts": {
-    "dev:npm": "npm run services:up && npm run wait-for-postgres && npm run migration:up && next dev",
+    "dev:npm": "npm run services:up && npm run services:wait:database && npm run migration:up && next dev",
     "dev": "./init-dev.sh",
     "stop": "npm run services:down && kill $(lsof -t -i:3000)",
     "services:up": "docker compose --env-file .env.development --file infra/compose.yaml up -d",
     "services:stop": "docker compose --env-file .env.development -f infra/compose.yaml stop",
     "services:down": "docker compose --env-file .env.development -f infra/compose.yaml down",
+    "services:wait:database": "node --env-file=.env.development infra/scripts/services:wait:database.js",
     "lint:prettier:check": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
     "lint:eslint:check": "next lint --dir .",
@@ -17,7 +18,6 @@
     "test:watch": "jest --watchAll --runInBand",
     "migration:create": "node-pg-migrate -m infra/migrations create",
     "migration:up": "node-pg-migrate -m infra/migrations --envPath .env.development up",
-    "wait-for-postgres": "node --env-file=.env.development infra/scripts/wait-for-postgres.js",
     "prepare": "husky",
     "commit": "cz"
   },
