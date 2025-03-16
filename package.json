@@ -4,9 +4,11 @@
   "description": "Será só mais um clone do https://www.tabnews.com.br/ do https://curso.dev/ ? Veremos...",
   "main": "index.js",
   "scripts": {
-    "dev:npm": "npm run services:up && npm run services:wait:database && npm run migrations:up && next dev",
     "dev": "./init-dev.sh",
+    "dev:npm": "npm run services:up && npm run services:wait:database && npm run migrations:up && next dev",
     "stop": "npm run services:down && kill $(lsof -t -i:3000)",
+    "test": "npm run services:up && concurrently -n next,jest --hide next -k -s command-jest \"next dev\" \"jest --runInBand --verbose\"",
+    "test:watch": "jest --watchAll --runInBand",
     "services:up": "docker compose --env-file .env.development --file infra/compose.yaml up -d",
     "services:stop": "docker compose --env-file .env.development -f infra/compose.yaml stop",
     "services:down": "docker compose --env-file .env.development -f infra/compose.yaml down",
@@ -16,8 +18,6 @@
     "lint:prettier:check": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
     "lint:eslint:check": "next lint --dir .",
-    "test": "npm run services:up && concurrently -n next,jest --hide next -k -s command-jest \"next dev\" \"jest --runInBand --verbose\"",
-    "test:watch": "jest --watchAll --runInBand",
     "prepare": "husky",
     "commit": "cz"
   },
